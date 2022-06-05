@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const Form = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [telefone, setTelefone] = useState();
+const Form = (user) => {
+  const [name, setName] = useState(user ? user.name : "");
+  const [email, setEmail] = useState(user ? user.email : "");
+  const [telefone, setTelefone] = useState(user ? user.telefone : "");
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -16,12 +16,17 @@ const Form = () => {
   };
 
   const handleTelefone = (e) => {
+    e.preventDefault();
     setTelefone(e.target.value);
     console.log(telefone);
+
+    //limpar formulario
+    setName("");
+    setTelefone("");
+    setTelefone("");
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     console.log("Formulario enviando");
     console.log(name, email, telefone);
   };
@@ -37,6 +42,7 @@ const Form = () => {
                 type="text"
                 name="name"
                 placeholder="Digite seu nome"
+                value={name}
                 onChange={handleName}
               ></input>
               <span>E-mail: </span>
@@ -44,6 +50,7 @@ const Form = () => {
                 type="email"
                 name="email"
                 placeholder="Digite seu e-mail"
+                value={email}
                 onChange={handleEmail}
               ></input>
               <span>Telefone</span>
@@ -51,6 +58,7 @@ const Form = () => {
                 type="number"
                 name="telefone"
                 placeholder="Digite seu telefone"
+                value={telefone}
                 onChange={handleTelefone}
               ></input>
             </label>
