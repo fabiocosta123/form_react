@@ -20,9 +20,15 @@ const Form = () => {
     console.log(telefone);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Formulario enviando");
+    console.log(name, email, telefone);
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <table className="container">
           <div className="context">
             <label>
